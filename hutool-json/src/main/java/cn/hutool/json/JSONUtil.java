@@ -1,5 +1,6 @@
 package cn.hutool.json;
 
+import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.io.IORuntimeException;
 import cn.hutool.core.io.file.FileReader;
 import cn.hutool.core.lang.TypeReference;
@@ -356,6 +357,17 @@ public class JSONUtil {
 	 */
 	public static String toJsonStr(Object obj) {
 		return toJsonStr(obj, (JSONConfig) null);
+	}
+
+	/**
+	 * 转换为日期时间格式化的JSON字符串
+	 * 格式 yyyy-MM-dd HH:mm:ss 格式见： {@link DatePattern} {@link DatePattern#NORM_DATETIME_PATTERN}
+	 *
+	 * @param obj 被转为JSON的对象
+	 * @return JSON字符串
+	 */
+	public static String toJsonNormDateTimeStr(Object obj) {
+		return toJsonStr(obj, JSONConfig.create().setDateFormat(DatePattern.NORM_DATETIME_PATTERN));
 	}
 
 	/**
